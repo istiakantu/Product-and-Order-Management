@@ -2,6 +2,7 @@
 
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
+import globals from "globals";
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -20,5 +21,8 @@ export default tseslint.config(
       "prefer-const": "error",
       "no-console": "warn",
     },
+  },
+  {
+    ignores: ["**/node_modules/", "**/dist/"],
   }
 );
