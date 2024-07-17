@@ -3,7 +3,7 @@ import { OrderServices } from "./order.service";
 
 // Order controllers
 
-// Create a Order
+// Create an order
 const createOrder = async (req: Request, res: Response) => {
   try {
     const orderData = req.body;
@@ -24,6 +24,25 @@ const createOrder = async (req: Request, res: Response) => {
   }
 };
 
+// Get all orders
+const getAllOrders = async (req: Request, res: Response) => {
+  try {
+    const result = await OrderServices.getAllOrders();
+    res.status(200).json({
+      success: true,
+      message: "Orders fetched successfully!",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: "Could not fetched orders",
+      error: err,
+    });
+  }
+};
+
 export const OrderControllers = {
   createOrder,
+  getAllOrders,
 };

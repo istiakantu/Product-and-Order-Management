@@ -9,6 +9,13 @@ const createOrder = async (payLoad: TOrder) => {
   return result;
 };
 
+// Get all Order
+const getAllOrders = async () => {
+  const result = await Order.find();
+  return result;
+};
+
 export const OrderServices = {
   createOrder,
+  getAllOrders,
 };
