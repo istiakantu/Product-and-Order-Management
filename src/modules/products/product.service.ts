@@ -1,4 +1,3 @@
-import { ObjectId } from "mongoose";
 import { TProduct } from "./product.interface";
 import { Product } from "./product.model";
 
