@@ -21,8 +21,15 @@ const getProductsById = async (id: string) => {
   return result;
 };
 
+// Delete a Product
+const deleteProduct = async (_id: string) => {
+  const result = await Product.updateOne({ _id }, { isDeleted: true });
+  return result;
+};
+
 export const ProductServices = {
   createProduct,
   getAllProducts,
   getProductsById,
+  deleteProduct,
 };

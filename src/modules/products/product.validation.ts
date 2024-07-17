@@ -21,6 +21,7 @@ const productValidationSchema = z.object({
   tags: z.array(z.string().min(1, "Tag cannot be empty")),
   variants: z.array(variantValidationSchema),
   inventory: inventoryValidationSchema,
+  isDeleted: z.boolean(),
 });
 
 export default productValidationSchema;
