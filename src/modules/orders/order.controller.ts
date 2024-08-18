@@ -36,7 +36,7 @@ const getAllOrders = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: "Could not fetched orders",
+      message: "Order not found",
       error: err,
     });
   }

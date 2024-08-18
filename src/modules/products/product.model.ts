@@ -54,6 +54,7 @@ export const productSchema: Schema = new Schema<TProduct>({
   },
   isDeleted: {
     type: Boolean,
+    required: false,
     default: false,
   },
 });
@@ -67,6 +68,7 @@ productSchema.pre("findOne", function (next) {
   this.find({ isDeleted: { $ne: true } });
   next();
 });
+
 // fixed aggregate for deleted product
 productSchema.pre("aggregate", function (next) {
   this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });

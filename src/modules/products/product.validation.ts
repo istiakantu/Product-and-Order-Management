@@ -14,14 +14,14 @@ const inventoryValidationSchema = z.object({
 
 // Define Zod schema for TProduct
 const productValidationSchema = z.object({
-  name: z.string().min(1, "Name is required").max(25),
+  name: z.string().min(1, "Name is required").max(35),
   description: z.string().min(1, "Description is required"),
   price: z.number().positive("Price must be a positive number"),
   category: z.string().min(1, "Category is required"),
   tags: z.array(z.string().min(1, "Tag cannot be empty")),
   variants: z.array(variantValidationSchema),
   inventory: inventoryValidationSchema,
-  isDeleted: z.boolean(),
+  isDeleted: z.boolean().default(false),
 });
 
 export default productValidationSchema;

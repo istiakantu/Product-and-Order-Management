@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./product.service";
 import productValidationSchema from "./product.validation";
-import { error } from "console";
 
 // Product Controller
 
@@ -85,9 +84,40 @@ const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
+// Search Products or Get All Products
+// const searchOrGetAllProducts = async (req: Request, res: Response) => {
+//   try {
+//     const { searchTerm } = req.query as { searchTerm?: string };
+//     let result;
+
+//     if (searchTerm) {
+//       result = await ProductServices.searchProducts(searchTerm);
+//       res.status(200).json({
+//         success: true,
+//         message: `Products matching search term '${searchTerm}' fetched successfully!`,
+//         data: result,
+//       });
+//     } else {
+//       result = await ProductServices.getAllProducts();
+//       res.status(200).json({
+//         success: true,
+//         message: "Products fetched successfully!",
+//         data: result,
+//       });
+//     }
+//   } catch (err: any) {
+//     res.status(500).json({
+//       success: false,
+//       message: "Could not fetch products",
+//       error: err.message || err,
+//     });
+//   }
+// };
+
 export const ProductControllers = {
   createProduct,
   getAllProducts,
   getProductsById,
   deleteProduct,
+  // searchOrGetAllProducts,
 };

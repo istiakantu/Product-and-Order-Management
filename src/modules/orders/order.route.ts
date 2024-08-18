@@ -10,4 +10,6 @@ router.post("/", OrderControllers.createOrder);
 // Get all orders
 router.get("/", OrderControllers.getAllOrders);
 
+// router.get("/:orderEmail", OrderControllers.getSingleOrders);
+
 export const OrderRoutes = router;
