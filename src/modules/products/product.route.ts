@@ -15,7 +15,10 @@ router.get("/:productId", ProductControllers.getProductsById);
 // Delete a product
 router.delete("/:productId", ProductControllers.deleteProduct);
 
+// Update a product
+router.put("/:productId", ProductControllers.updateProduct);
+
 // Search or Get all products
-// router.get("/", ProductControllers.searchOrGetAllProducts);
+// router.get("/?searchTerm", ProductControllers.searchProducts);
 
 export const ProductRoutes = router;

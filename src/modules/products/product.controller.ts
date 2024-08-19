@@ -84,27 +84,70 @@ const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
-// Search Products or Get All Products
-// const searchOrGetAllProducts = async (req: Request, res: Response) => {
-//   try {
-//     const { searchTerm } = req.query as { searchTerm?: string };
-//     let result;
+const updateProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const productData = req.body;
 
-//     if (searchTerm) {
-//       result = await ProductServices.searchProducts(searchTerm);
-//       res.status(200).json({
-//         success: true,
-//         message: `Products matching search term '${searchTerm}' fetched successfully!`,
-//         data: result,
-//       });
-//     } else {
-//       result = await ProductServices.getAllProducts();
-//       res.status(200).json({
-//         success: true,
-//         message: "Products fetched successfully!",
-//         data: result,
+    // Data validation using Zod
+    const zodParseData = productValidationSchema.parse(productData);
+
+    const updatedProduct = await ProductServices.updateProduct(
+      productId,
+      zodParseData
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Product updated successfully!",
+      data: updatedProduct,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: "Could not update product",
+      error: err.message || err,
+    });
+  }
+};
+
+//
+
+//
+
+// Search Products
+// const searchProducts = async (req: Request, res: Response) => {
+//   try {
+//     const { searchTerm } = req.params;
+
+//     if (!searchTerm) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Search term is required",
 //       });
 //     }
+
+//     const result = await ProductServices.searchProducts(searchTerm);
+
+//     if (result.length === 0) {
+//       return res.status(404).json({
+//         success: false,
+//         message: `No products found matching search term '${searchTerm}'`,
+//       });
+//     }
+
+//     res.status(200).json({
+//       success: true,
+//       message: `Products matching search term '${searchTerm}' fetched successfully!`,
+//       data: result,
+//     });
 //   } catch (err: any) {
 //     res.status(500).json({
 //       success: false,
@@ -119,5 +162,6 @@ export const ProductControllers = {
   getAllProducts,
   getProductsById,
   deleteProduct,
-  // searchOrGetAllProducts,
+  updateProduct,
+  // searchProducts,
 };

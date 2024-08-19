@@ -27,6 +27,18 @@ const deleteProduct = async (_id: string) => {
   return result;
 };
 
+// Update a Product
+const updateProduct = async (id: string, payLoad: TProduct) => {
+  const updatedProduct = await Product.findByIdAndUpdate(id, payLoad, {
+    new: true,
+  });
+  return updatedProduct;
+};
+
+//
+
+//
+
 // Search Products
 // const searchProducts = async (searchTerm: string) => {
 //   const searchRegex = new RegExp(searchTerm, "i"); // Case-insensitive search
@@ -46,5 +58,5 @@ export const ProductServices = {
   getAllProducts,
   getProductsById,
   deleteProduct,
-  // searchProducts,
+  updateProduct,
 };
