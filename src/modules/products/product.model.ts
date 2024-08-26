@@ -52,27 +52,27 @@ export const productSchema: Schema = new Schema<TProduct>({
     type: inventorySchema,
     required: true,
   },
-  isDeleted: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
+  // isDeleted: {
+  //   type: Boolean,
+  //   required: false,
+  //   default: false,
+  // },
 });
 
 // Query Middleware
-productSchema.pre("find", function (next) {
-  this.find({ isDeleted: { $ne: true } });
-  next();
-});
-productSchema.pre("findOne", function (next) {
-  this.find({ isDeleted: { $ne: true } });
-  next();
-});
+// productSchema.pre("find", function (next) {
+//   this.find({ isDeleted: { $ne: true } });
+//   next();
+// });
+// productSchema.pre("findOne", function (next) {
+//   this.find({ isDeleted: { $ne: true } });
+//   next();
+// });
 
-// fixed aggregate for deleted product
-productSchema.pre("aggregate", function (next) {
-  this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
-  next();
-});
+// // fixed aggregate for deleted product
+// productSchema.pre("aggregate", function (next) {
+//   this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
+//   next();
+// });
 
 export const Product = model<TProduct>("Product", productSchema);

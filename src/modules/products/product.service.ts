@@ -23,7 +23,7 @@ const getProductsById = async (id: string) => {
 
 // Delete a Product
 const deleteProduct = async (_id: string) => {
-  const result = await Product.updateOne({ _id }, { isDeleted: true });
+  const result = await Product.findByIdAndDelete(_id);
   return result;
 };
 
@@ -40,18 +40,18 @@ const updateProduct = async (id: string, payLoad: TProduct) => {
 //
 
 // Search Products
-// const searchProducts = async (searchTerm: string) => {
-//   const searchRegex = new RegExp(searchTerm, "i"); // Case-insensitive search
-//   const result = await Product.find({
-//     $or: [
-//       { name: { $regex: searchRegex } },
-//       { description: { $regex: searchRegex } },
-//       { category: { $regex: searchRegex } },
-//       { tags: { $regex: searchRegex } },
-//     ],
-//   });
-//   return result;
-// };
+const searchProducts = async (searchTerm: string) => {
+  const searchRegex = new RegExp(searchTerm, "i"); // Case-insensitive search
+  const result = await Product.find({
+    $or: [
+      { name: { $regex: searchRegex } },
+      { description: { $regex: searchRegex } },
+      { category: { $regex: searchRegex } },
+      { tags: { $regex: searchRegex } },
+    ],
+  });
+  return result;
+};
 
 export const ProductServices = {
   createProduct,
@@ -59,4 +59,5 @@ export const ProductServices = {
   getProductsById,
   deleteProduct,
   updateProduct,
+  searchProducts,
 };
