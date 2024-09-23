@@ -19,7 +19,7 @@ const createProduct = async (req: Request, res: Response) => {
       message: "Product created successfully!",
       data: result,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     res.status(500).json({
       success: false,
       message: "Could not created product",
@@ -37,7 +37,7 @@ const getAllProducts = async (req: Request, res: Response) => {
       message: "Products fetched successfully!",
       data: result,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     res.status(500).json({
       success: false,
       message: "Could not fetched products",
@@ -56,7 +56,7 @@ const getProductsById = async (req: Request, res: Response) => {
       message: "Products fetched successfully!",
       data: result,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     res.status(500).json({
       success: false,
       message: "Could not fetched products",
@@ -75,7 +75,7 @@ const deleteProduct = async (req: Request, res: Response) => {
       message: "Product deleted successfully!",
       data: result,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     res.status(500).json({
       success: false,
       message: "Could not deleted product",
@@ -109,7 +109,7 @@ const updateProduct = async (req: Request, res: Response) => {
       message: "Product updated successfully!",
       data: updatedProduct,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     res.status(500).json({
       success: false,
       message: "Could not update product",
@@ -123,40 +123,40 @@ const updateProduct = async (req: Request, res: Response) => {
 //
 
 // Search Products
-const searchProducts = async (req: Request, res: Response) => {
-  try {
-    const { searchTerm } = req.query;
+// const searchProducts = async (req: Request, res: Response) => {
+//   try {
+//     const { searchTerm } = req.query;
 
-    if (!searchTerm || typeof searchTerm !== "string") {
-      return res.status(400).json({
-        success: false,
-        message: "Search term is required",
-      });
-    }
+//     if (!searchTerm || typeof searchTerm !== "string") {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Search term is required",
+//       });
+//     }
 
-    const result = await ProductServices.searchProducts(searchTerm);
+//     const result = await ProductServices.searchProducts(searchTerm);
 
-    if (result.length === 0) {
-      return res.status(404).json({
-        success: false,
-        message: `No products found matching search term '${searchTerm}'`,
-        data: [],
-      });
-    }
+//     if (result.length === 0) {
+//       return res.status(404).json({
+//         success: false,
+//         message: `No products found matching search term '${searchTerm}'`,
+//         data: [],
+//       });
+//     }
 
-    res.status(200).json({
-      success: true,
-      message: `Products matching search term '${searchTerm}' fetched successfully!`,
-      data: result,
-    });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: "Could not fetch products",
-      error: err.message || err,
-    });
-  }
-};
+//     res.status(200).json({
+//       success: true,
+//       message: `Products matching search term '${searchTerm}' fetched successfully!`,
+//       data: result,
+//     });
+//   } catch (err: unknown) {
+//     res.status(500).json({
+//       success: false,
+//       message: "Could not fetch products",
+//       error: err,
+//     });
+//   }
+// };
 
 export const ProductControllers = {
   createProduct,
@@ -164,5 +164,5 @@ export const ProductControllers = {
   getProductsById,
   deleteProduct,
   updateProduct,
-  searchProducts,
+  // searchProducts,
 };

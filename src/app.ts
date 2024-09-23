@@ -18,7 +18,7 @@ app.use((req, res) => {
 });
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello Next!");
+  res.send("Hello....!! This is the server for Product and Order Management");
 });
 
 export default app;
