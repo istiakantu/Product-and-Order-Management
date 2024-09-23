@@ -1,24 +1,25 @@
-## How to run locally
+## Run Locally
 
-- Step 1: Clone the repository
-  🔗
+Clone the project
 
 ```bash
- https://github.com/istiakantu/Product-and-Order-Management.git
+  git clone https://github.com/istiakantu/Product-and-Order-Management.git
 ```
 
-- Step 2: Install dependencies
+Go to the project directory
 
-  ```bash
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
   npm install
+```
 
-  ```
+Start the server
 
-- Step 3: Set up environment variables
-- Step 4: Start MongoDB
-- Step 6: Access the API
-- Step 7: Building for production
-
-  ```bash
+```bash
   npm run start:dev
-  ```
+```
