@@ -10,8 +10,21 @@ const createProduct = async (payLoad: TProduct) => {
 };
 
 // Get all Product
-const getAllProducts = async () => {
-  const result = await Product.find();
+const getProducts = async (searchTerm?: string) => {
+  //eslint-disable-next-line
+  const filterDoc: any = {};
+
+  if (searchTerm) {
+    filterDoc.$or = [
+      { name: { $regex: searchTerm, $options: "i" } },
+      { description: { $regex: searchTerm, $options: "i" } },
+      { category: { $regex: searchTerm, $options: "i" } },
+      { tags: { $regex: searchTerm, $options: "i" } },
+    ];
+  }
+
+  // Use filterDoc for either search or fetching all
+  const result = await Product.find(filterDoc);
   return result;
 };
 
@@ -55,7 +68,7 @@ const updateProduct = async (id: string, payLoad: TProduct) => {
 
 export const ProductServices = {
   createProduct,
-  getAllProducts,
+  getProducts,
   getProductsById,
   deleteProduct,
   updateProduct,

@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/", ProductControllers.createProduct);
 
 // Get all products
-router.get("/", ProductControllers.getAllProducts);
+router.get("/", ProductControllers.getProducts);
 
 // Get single product
 router.get("/:productId", ProductControllers.getProductsById);
@@ -17,8 +17,5 @@ router.delete("/:productId", ProductControllers.deleteProduct);
 
 // Update a product
 router.put("/:productId", ProductControllers.updateProduct);
-
-// Search or Get all products
-// router.get("/", ProductControllers.searchProducts);
 
 export const ProductRoutes = router;
