@@ -35,26 +35,19 @@ const createOrder = async (order: TOrder) => {
   }
 };
 
-/*********************/
-// const createOrder = async (payLoad: TOrder) => {
-//   const result = await Order.create(payLoad);
-//   return result;
-// };
-
-// Get all Order
-const getAllOrders = async () => {
-  const result = await Order.find();
+// Get Order
+const getOrders = async (email: string) => {
+  //eslint-disable-next-line
+  const filter: any = {};
+  if (email) {
+    filter.email = email;
+  }
+  const result = await Order.find(filter);
   return result;
 };
 
-// Get order by email
-// const getOrdersByEmail = async (email: string) => {
-//   const result = await Order.find({ email });
-//   return result;
-// };
-
 export const OrderServices = {
   createOrder,
-  getAllOrders,
+  getOrders,
   // getOrdersByEmail,
 };
