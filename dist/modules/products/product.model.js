@@ -72,3 +72,4 @@ exports.productSchema = new mongoose_1.Schema({
 //   next();
 // });
 exports.Product = (0, mongoose_1.model)("Product", exports.productSchema);
+exports.default = exports.Product;

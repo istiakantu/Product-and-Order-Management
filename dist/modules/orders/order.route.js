@@ -10,7 +10,6 @@ const router = express_1.default.Router();
 // Order routes
 //Create an order
 router.post("/", order_controller_1.OrderControllers.createOrder);
-// Get all orders
-router.get("/", order_controller_1.OrderControllers.getAllOrders);
-// router.get("/", OrderControllers.getOrdersByEmail);
+// Get all orders or email search term
+router.get("/", order_controller_1.OrderControllers.getOrders);
 exports.OrderRoutes = router;

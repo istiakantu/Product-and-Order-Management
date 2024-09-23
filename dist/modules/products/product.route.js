@@ -10,13 +10,11 @@ const router = express_1.default.Router();
 // Create a product
 router.post("/", product_controller_1.ProductControllers.createProduct);
 // Get all products
-router.get("/", product_controller_1.ProductControllers.getAllProducts);
+router.get("/", product_controller_1.ProductControllers.getProducts);
 // Get single product
 router.get("/:productId", product_controller_1.ProductControllers.getProductsById);
 // Delete a product
 router.delete("/:productId", product_controller_1.ProductControllers.deleteProduct);
 // Update a product
 router.put("/:productId", product_controller_1.ProductControllers.updateProduct);
-// Search or Get all products
-// router.get("/", ProductControllers.searchProducts);
 exports.ProductRoutes = router;

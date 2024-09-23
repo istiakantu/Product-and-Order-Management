@@ -9,7 +9,7 @@ const createProduct = async (payLoad: TProduct) => {
   return result;
 };
 
-// Get all Product
+// Get Products
 const getProducts = async (searchTerm?: string) => {
   //eslint-disable-next-line
   const filterDoc: any = {};
@@ -48,29 +48,10 @@ const updateProduct = async (id: string, payLoad: TProduct) => {
   return updatedProduct;
 };
 
-//
-
-//
-
-// Search Products
-// const searchProducts = async (searchTerm: string) => {
-//   const searchRegex = new RegExp(searchTerm, "i"); // Case-insensitive search
-//   const result = await Product.find({
-//     $or: [
-//       { name: { $regex: searchRegex } },
-//       { description: { $regex: searchRegex } },
-//       { category: { $regex: searchRegex } },
-//       { tags: { $regex: searchRegex } },
-//     ],
-//   });
-//   return result;
-// };
-
 export const ProductServices = {
   createProduct,
   getProducts,
   getProductsById,
   deleteProduct,
   updateProduct,
-  // searchProducts,
 };

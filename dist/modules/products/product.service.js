@@ -18,8 +18,19 @@ const createProduct = (payLoad) => __awaiter(void 0, void 0, void 0, function* (
     return result;
 });
 // Get all Product
-const getAllProducts = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield product_model_1.Product.find();
+const getProducts = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
+    //eslint-disable-next-line
+    const filterDoc = {};
+    if (searchTerm) {
+        filterDoc.$or = [
+            { name: { $regex: searchTerm, $options: "i" } },
+            { description: { $regex: searchTerm, $options: "i" } },
+            { category: { $regex: searchTerm, $options: "i" } },
+            { tags: { $regex: searchTerm, $options: "i" } },
+        ];
+    }
+    // Use filterDoc for either search or fetching all
+    const result = yield product_model_1.Product.find(filterDoc);
     return result;
 });
 // Get Single Product
@@ -56,7 +67,7 @@ const updateProduct = (id, payLoad) => __awaiter(void 0, void 0, void 0, functio
 // };
 exports.ProductServices = {
     createProduct,
-    getAllProducts,
+    getProducts,
     getProductsById,
     deleteProduct,
     updateProduct,
