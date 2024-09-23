@@ -2,6 +2,15 @@ import mongoose from "mongoose";
 import app from "./app";
 import config from "./config";
 
+// Catch all "Not Found" route
+app.all("*", (req, res) => {
+  {
+    res.status(400).json({
+      success: false,
+      message: "Route not found",
+    });
+  }
+});
 async function main() {
   try {
     await mongoose.connect(config.db_url as string);

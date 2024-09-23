@@ -15,6 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = __importDefault(require("./app"));
 const config_1 = __importDefault(require("./config"));
+// Catch all "Not Found" route
+app_1.default.all("*", (req, res) => {
+    {
+        res.status(400).json({
+            success: false,
+            message: "Route not found",
+        });
+    }
+});
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
