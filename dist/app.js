@@ -12,12 +12,14 @@ app.use(express_1.default.json());
 app.use("/api/products", product_route_1.ProductRoutes);
 app.use("/api/orders", order_route_1.OrderRoutes);
 // Catch all "Not Found" route
-app.use((req, res) => {
-    res.status(404).json({
-        success: false,
-        message: "Route not found",
-    });
-});
+// app.all("*", (req, res) => {
+//   {
+//     res.status(400).json({
+//       success: false,
+//       message: "Route not found",
+//     });
+//   }
+// });
 app.get("/", (req, res) => {
     res.send("Hello....!! This is the server for Product and Order Management");
 });
