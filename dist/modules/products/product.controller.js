@@ -37,7 +37,7 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
-// Get all products
+// Get products
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const searchTerm = req.query.searchTerm;

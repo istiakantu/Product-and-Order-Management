@@ -17,7 +17,7 @@ const createProduct = (payLoad) => __awaiter(void 0, void 0, void 0, function* (
     const result = yield product_model_1.Product.create(payLoad);
     return result;
 });
-// Get all Product
+// Get Products
 const getProducts = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
     //eslint-disable-next-line
     const filterDoc = {};
@@ -50,26 +50,10 @@ const updateProduct = (id, payLoad) => __awaiter(void 0, void 0, void 0, functio
     });
     return updatedProduct;
 });
-//
-//
-// Search Products
-// const searchProducts = async (searchTerm: string) => {
-//   const searchRegex = new RegExp(searchTerm, "i"); // Case-insensitive search
-//   const result = await Product.find({
-//     $or: [
-//       { name: { $regex: searchRegex } },
-//       { description: { $regex: searchRegex } },
-//       { category: { $regex: searchRegex } },
-//       { tags: { $regex: searchRegex } },
-//     ],
-//   });
-//   return result;
-// };
 exports.ProductServices = {
     createProduct,
     getProducts,
     getProductsById,
     deleteProduct,
     updateProduct,
-    // searchProducts,
 };
